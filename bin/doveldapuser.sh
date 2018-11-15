@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-# Add user to LDAP tree using custom scheme:
+# Create new user in Dovecot using LDAP scheme:
 # https://github.com/tleuxner/ldap-virtualMail
 # Thomas Leuxner <tlx@leuxner.net> 01-11-2018
 #
