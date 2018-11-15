@@ -1,7 +1,7 @@
 # dovecot
 Helper scripts for Dovecot.
 
-`doveadduser` will create a new Dovecot user using a passwd-file.
+`doveadduser.sh` will create a new Dovecot user using a passwd-file.
 
 `doveexpunge.sh` will expunge mails from a mailbox before a certain date.
 
