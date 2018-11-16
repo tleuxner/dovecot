@@ -4,16 +4,16 @@ set -e
 # https://github.com/tleuxner/ldap-virtualMail
 # Thomas Leuxner <tlx@leuxner.net> 01-11-2018
 #
-ldap_server='ldap://ldap.example.com/'
-ldap_bind_dn='cn=admin,dc=example,dc=com'
-ldap_bind_dn_pw='secret'
-ldap_search_base='ou=Users,ou=Mail,dc=example,dc=com'
+# [16-11-2018]
+# * moved LDAP binds to include
+
 ldap_uid_prefix='vmail'
 vmail_home_base="/var/vmail/domains"
 vmail_unix_uid=5000
 vmail_unix_gid=5000
 user_quota='5G'
 
+. ldap_binds.inc
 . msg_formatted.inc
 
 if [ $# -eq 0 ]; then
@@ -32,7 +32,7 @@ confirm_yn() {
   done
 }
 
-# Do we have that user already?
+# Do we have that user?
 doveadm user -u $1 && { printf '\nUser already exists.\n' >&2; exit 1; }
 
 # Split out domain part from $1 user@domain
