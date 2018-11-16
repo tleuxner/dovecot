@@ -1,11 +1,11 @@
 #!/bin/sh
 set -e
 # Update Dovecot user password in LDAP
+# https://github.com/tleuxner/ldap-virtualMail
 # Thomas Leuxner <tlx@leuxner.net> 01-11-2018
 #
 # [16-11-2018]
 # * moved LDAP binds to include
-# * added check to verify hosted domains before adding aliases
 
 . ldap_binds.inc
 . msg_formatted.inc
