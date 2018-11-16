@@ -1,14 +1,13 @@
 #!/bin/sh
 set -e
 # Update Dovecot user password in LDAP
-# Custom scheme: https://github.com/tleuxner/ldap-virtualMail
 # Thomas Leuxner <tlx@leuxner.net> 01-11-2018
 #
-ldap_server='ldap://ldap.example.com/'
-ldap_bind_dn='cn=admin,dc=example,dc=com'
-ldap_bind_dn_pw='secret'
-ldap_search_base='ou=Users,ou=Mail,dc=example,dc=com'
+# [16-11-2018]
+# * moved LDAP binds to include
+# * added check to verify hosted domains before adding aliases
 
+. ldap_binds.inc
 . msg_formatted.inc
 
 if [ $# -eq 0 ]; then
@@ -27,10 +26,10 @@ confirm_yn() {
   done
 }
 
-# Do we have that user already?
+# Do we have that user?
 doveadm user -u $1 || { printf '\nUser does not exist.\n' >&2; exit 1; }
 
-# Do we really want to create a new user?
+# Do we really want to set a new password?
 confirm_yn "Set *new* password for user \"$1\" ? "
 
 ldap_user_dn=$(ldapsearch -LLL -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server -b $ldap_search_base "(&(objectclass=mailUser)(mailDrop=$1))" dn)
