@@ -70,4 +70,4 @@ userPassword: {CRYPT}$password_hash\n" | ldapadd -ZZ -D $ldap_bind_dn -w $ldap_b
 
 msg_formatted "$i_step Flushing negative user cache ..."
 doveadm auth cache flush $1
-msg_formatted "$i_done User has been created $date <<<"
+msg_formatted "$i_done User has been created <<<"
