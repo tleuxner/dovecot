@@ -67,4 +67,4 @@ ldap_ldif_entry="$ldap_user_dn\nchangetype: modify\nadd: mailAlias\nmailAlias: $
 msg_formatted "$i_step Committing LDIF Update ($ldap_user_dn) ..."
 printf "$ldap_ldif_entry" | ldapmodify -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server
 
-msg_formatted "$i_done Alias has been created $date <<<"
+msg_formatted "$i_done Alias has been created <<<"
