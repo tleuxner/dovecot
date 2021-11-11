@@ -40,7 +40,7 @@ confirm_yn "Create *new* domain ($1) ? "
 msg_formatted "$i_step Committing LDIF Update ..."
 
 printf "\
-dn: dc=$1,ou=Domains,ou=Mail,dc=leuxner,dc=net\n\
+dn: dc=$1,$ldap_search_base\n\
 dc: $1\n\
 objectClass: dNSDomain\n\
 objectClass: top\n" | ldapadd -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server | while read input; do
