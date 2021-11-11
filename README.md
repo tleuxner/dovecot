@@ -7,6 +7,6 @@ Helper scripts for Dovecot.
 
 `vmail-adduser.sh` will create a new Dovecot user using LDAP schema [ldap-virtualMail](https://github.com/tleuxner/ldap-virtualMail).
 
-`doveldappw.sh` will change the Dovecot user password in LDAP.
+`vmail_pw.sh` will change the Dovecot user password in LDAP.
 
 `doveldapalias.sh` will create a new mail alias in LDAP.
