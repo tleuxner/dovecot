@@ -9,4 +9,4 @@ Helper scripts for Dovecot.
 
 `vmail-pw.sh` will change the Dovecot user password in LDAP.
 
-`doveldapalias.sh` will create a new mail alias in LDAP.
+`vmail-alias.sh` will create a new mail alias in LDAP.
