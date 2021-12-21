@@ -67,7 +67,7 @@ confirm_yn "Add new alias <$1> to ($vmail_user) ? "
 # Update mailAlias for record
 ldap_ldif_entry="$vmail_user_dn\nchangetype: modify\nadd: mailAlias\nmailAlias: $1"
 msg_formatted "$i_step Committing LDIF update ..."
-printf "$ldap_ldif_entry" | ldapmodify -n -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server | while read input; do
+printf "$ldap_ldif_entry" | ldapmodify -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server | while read input; do
         msg_formatted "$i_step $input"
 done
 
