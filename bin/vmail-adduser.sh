@@ -52,6 +52,10 @@ set -e
 # Do we have that user?
 doveadm user -u $1 && { printf '\n';msg_formatted "$i_warn Found existing user. Exiting! <<<" >&2; exit 1; }
 
+# Is this alias already used?
+vmail_alias_dn=$(ldapsearch -LLL -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server -b $ldap_search_base "(&(objectClass=mailUser)(mailAlias=$1))" dn)
+[ -z "$vmail_alias_dn" ] || { msg_formatted "$i_warn Virtual mail alias already in use by <$vmail_alias_dn>" >&2; exit 1; }
+
 # Do we really want to create a new user?
 printf '\n'
 confirm_yn "Create *new* vmail user <$1> ? "
