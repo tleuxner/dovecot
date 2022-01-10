@@ -61,6 +61,7 @@ printf '\n'
 confirm_yn "Create *new* vmail user <$1> ? "
 
 vmail_max_uid=$(ldapsearch -LLL -ZZ -D $ldap_bind_dn -w $ldap_bind_dn_pw -H $ldap_server -b $ldap_search_base objectClass=mailUser uid | awk '{if(max<$2){max=$2;uid=$2}}END{print uid}')
+[ -z "$vmail_max_uid" ] && vmail_max_uid=vmail10000
 vmail_max_uid=$(echo $vmail_max_uid | sed -e "s/$vmail_uid_prefix//")
 vmail_max_uid=$((vmail_max_uid+1))
 vmail_user=$vmail_uid_prefix$vmail_max_uid
