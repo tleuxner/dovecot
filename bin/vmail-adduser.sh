@@ -81,7 +81,6 @@ mailDrop: $local_part@$domain_part\n\
 objectClass: account\n\
 objectClass: simpleSecurityObject\n\
 objectClass: mailUser\n\
-objectClass: top\n\
 mailUidNumber: $vmail_unix_uid\n\
 mailGidNumber: $vmail_unix_gid\n\
 mailEnabled: TRUE\n\
